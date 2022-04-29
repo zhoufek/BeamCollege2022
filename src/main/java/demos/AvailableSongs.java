@@ -13,8 +13,7 @@ import java.util.Random;
 public final class AvailableSongs {
   private AvailableSongs() {}
 
-  // Song lyrics pulled from This is Anfield and Anfield Online. Would have gotten more, but I
-  // waited until the last minute to put this demo together.
+  // Song lyrics pulled from This is Anfield and Anfield Online.
   private static final List<String> FILES = List.of(
       "Campione",
       "Fields of Anfield Road",
