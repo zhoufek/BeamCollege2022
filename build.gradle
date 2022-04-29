@@ -1,0 +1,57 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.18'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'application'
+    id "com.google.protobuf" version "0.8.18"
+}
+
+group 'demos'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform('com.google.cloud:libraries-bom:25.2.0')
+
+    implementation 'com.google.cloud:google-cloud-pubsub'
+    implementation 'com.google.guava:guava:31.1-jre'
+}
+
+application {
+    mainClassName = 'demos.DemoPublisher'
+}
+
+protobuf {
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.0.0'
+    }
+    generateProtoTasks {
+        all().each { task ->
+            // Generates the proto descriptor file, which will be uploaded to
+            // GCS
+            task.generateDescriptorSet = true
+            task.descriptorSetOptions.path =
+                "${projectDir}/build/descriptors/song.dsc"
+            task.descriptorSetOptions.includeSourceInfo = true
+            task.descriptorSetOptions.includeImports = true
+        }
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir '${buildDir.absolutePath}/generated/sources'
+        }
+    }
+}

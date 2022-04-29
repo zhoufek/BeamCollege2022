@@ -1,0 +1,14 @@
+# Maven build files
+**/.gradle/**/*
+**/build/**/*
+
+# IntelliJ files
+**/.idea/**/*
+**/*.iml
+**/*.ipr
+**/*.iws
+**/out/**/*
+
+# MacOSX Files
+**/.DS_Store/**/*
+**/.DS_Store

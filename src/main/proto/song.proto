@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package demos;
+
+option java_multiple_files = true;
+option java_package = "demos";
+
+// Song to send to topic.
+message Song {
+  string time_sung = 1;
+  string name = 2;
+  string lyrics = 3;
+}
+
+// Basic details but without the time field.
+message SongWithoutTime {
+  string name = 1;
+  string lyrics = 2;
+}
